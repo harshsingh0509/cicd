@@ -18,7 +18,8 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H your-ec2-ip >> ~/.ssh/known_hosts
+        ssh-keyscan -H 35.173.213.73 >> ~/.ssh/known_hosts
 
     - name: Test SSH Connection
       run: ssh ubuntu@35.173.213.73 "echo 'Connected successfully!'"
+
