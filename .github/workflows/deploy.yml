@@ -1,5 +1,3 @@
-name: Deploy to EC2
-
 on:
   push:
     branches:
@@ -22,4 +20,18 @@ jobs:
 
     - name: Test SSH Connection
       run: ssh ubuntu@35.173.213.73 "echo 'Connected successfully!'"
+
+    - name: Build Application
+      run: |
+        npm install
+        npm run build
+
+    - name: Deploy Application
+      run: |
+        ssh ubuntu@35.173.213.73 "
+        cd /path/to/deployment/directory &&
+        git pull origin main &&
+        npm install &&
+        pm2 restart all
+        "
 
